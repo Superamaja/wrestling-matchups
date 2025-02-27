@@ -5,6 +5,7 @@ export interface Matchup {
   wrestler1: Wrestler;
   wrestler2: Wrestler;
   date: string;
+  time: string;
   isCompleted: boolean;
   winner?: string;
   matchDescription?: string;

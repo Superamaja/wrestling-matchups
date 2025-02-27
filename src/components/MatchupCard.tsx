@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type { Matchup } from "../types/Matchup";
 import { cn } from "../lib/utils";
+import { getWrestlerStats } from "../utils/wrestlerStats";
+import { matchups } from "../data/matchups";
 
 interface Props {
   matchup: Matchup;
@@ -12,17 +14,9 @@ export function MatchupCard({ matchup }: Props) {
   const isToday =
     new Date(matchup.date).toDateString() === new Date().toDateString();
 
-  // Calculate win percentage for each wrestler
-  const wrestler1WinRate = Math.round(
-    (matchup.wrestler1.wins /
-      (matchup.wrestler1.wins + matchup.wrestler1.losses)) *
-      100
-  );
-  const wrestler2WinRate = Math.round(
-    (matchup.wrestler2.wins /
-      (matchup.wrestler2.wins + matchup.wrestler2.losses)) *
-      100
-  );
+  // Calculate stats for each wrestler
+  const wrestler1Stats = getWrestlerStats(matchup.wrestler1.name, matchups);
+  const wrestler2Stats = getWrestlerStats(matchup.wrestler2.name, matchups);
 
   return (
     <div
@@ -56,12 +50,13 @@ export function MatchupCard({ matchup }: Props) {
         </div>
       </div>
 
-      {/* Date ribbon */}
+      {/* Date and time ribbon */}
       <div className="absolute -right-10 top-6 transform rotate-45 bg-gradient-to-r from-indigo-600/90 to-purple-600/90 text-white px-10 py-1 text-xs font-bold shadow-lg">
         {new Date(matchup.date).toLocaleDateString("en-US", {
           month: "short",
           day: "numeric",
-        })}
+        })}{" "}
+        {matchup.time}
       </div>
 
       {/* Card content */}
@@ -104,16 +99,16 @@ export function MatchupCard({ matchup }: Props) {
               </h3>
               <div className="mt-1 flex items-center justify-center space-x-2">
                 <span className="text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 py-0.5 px-2 rounded-full">
-                  {matchup.wrestler1.wins}W
+                  {wrestler1Stats.wins}W
                 </span>
                 <span className="text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400 py-0.5 px-2 rounded-full">
-                  {matchup.wrestler1.losses}L
+                  {wrestler1Stats.losses}L
                 </span>
               </div>
               <div className="mt-2 h-1.5 w-full bg-neutral-200/50 dark:bg-neutral-700/50 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-indigo-500 to-purple-500"
-                  style={{ width: `${wrestler1WinRate}%` }}
+                  style={{ width: `${wrestler1Stats.winRate}%` }}
                 />
               </div>
             </div>
@@ -161,16 +156,16 @@ export function MatchupCard({ matchup }: Props) {
               </h3>
               <div className="mt-1 flex items-center justify-center space-x-2">
                 <span className="text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 py-0.5 px-2 rounded-full">
-                  {matchup.wrestler2.wins}W
+                  {wrestler2Stats.wins}W
                 </span>
                 <span className="text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400 py-0.5 px-2 rounded-full">
-                  {matchup.wrestler2.losses}L
+                  {wrestler2Stats.losses}L
                 </span>
               </div>
               <div className="mt-2 h-1.5 w-full bg-neutral-200/50 dark:bg-neutral-700/50 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-purple-500 to-indigo-500"
-                  style={{ width: `${wrestler2WinRate}%` }}
+                  style={{ width: `${wrestler2Stats.winRate}%` }}
                 />
               </div>
             </div>
@@ -193,10 +188,12 @@ export function MatchupCard({ matchup }: Props) {
       <div className="py-3 px-6 bg-black/5 dark:bg-white/5 text-center text-xs text-neutral-600 dark:text-neutral-400 font-medium">
         {new Date(matchup.date).toLocaleDateString("en-US", {
           weekday: "long",
-          year: "numeric",
           month: "long",
           day: "numeric",
+          year: "numeric",
         })}
+        {" • "}
+        {matchup.time}
       </div>
     </div>
   );

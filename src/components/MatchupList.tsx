@@ -14,14 +14,18 @@ export function MatchupList() {
     return true;
   });
 
-  // Sort matchups by date
+  // Sort matchups by date and time
   const sortedMatchups = [...filteredMatchups].sort((a, b) => {
     if (filter === "completed") {
       // Most recent completed matches first
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
+      const dateTimeA = new Date(`${a.date}T${a.time}`).getTime();
+      const dateTimeB = new Date(`${b.date}T${b.time}`).getTime();
+      return dateTimeB - dateTimeA;
     }
-    // Upcoming matches by date
-    return new Date(a.date).getTime() - new Date(b.date).getTime();
+    // Upcoming matches by date and time
+    const dateTimeA = new Date(`${a.date}T${a.time}`).getTime();
+    const dateTimeB = new Date(`${b.date}T${b.time}`).getTime();
+    return dateTimeA - dateTimeB;
   });
 
   return (
