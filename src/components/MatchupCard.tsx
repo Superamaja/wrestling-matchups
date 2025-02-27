@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Matchup } from "../data/matchups";
+import type { Matchup } from "../types/Matchup";
 import { cn } from "../lib/utils";
 
 interface Props {

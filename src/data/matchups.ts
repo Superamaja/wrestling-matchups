@@ -1,19 +1,4 @@
-export interface Wrestler {
-  name: string;
-  wins: number;
-  losses: number;
-  imageUrl?: string;
-}
-
-export interface Matchup {
-  id: string;
-  wrestler1: Wrestler;
-  wrestler2: Wrestler;
-  date: string;
-  isCompleted: boolean;
-  winner?: string;
-  matchDescription?: string;
-}
+import type { Matchup } from "../types/Matchup";
 
 export const matchups: Matchup[] = [
   {
