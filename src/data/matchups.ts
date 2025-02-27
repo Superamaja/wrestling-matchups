@@ -3,12 +3,8 @@ import type { Matchup } from "../types/Matchup";
 export const matchups: Matchup[] = [
   {
     id: "1",
-    wrestler1: {
-      name: "The Mountain",
-    },
-    wrestler2: {
-      name: "Thunder Strike",
-    },
+    wrestler1: "The Mountain",
+    wrestler2: "Thunder Strike",
     date: "2024-04-15",
     time: "19:00",
     isCompleted: false,
@@ -16,12 +12,8 @@ export const matchups: Matchup[] = [
   },
   {
     id: "2",
-    wrestler1: {
-      name: "Quick Silver",
-    },
-    wrestler2: {
-      name: "Steel Shadow",
-    },
+    wrestler1: "Quick Silver",
+    wrestler2: "Steel Shadow",
     date: "2024-04-15",
     time: "20:30",
     isCompleted: true,
@@ -30,12 +22,8 @@ export const matchups: Matchup[] = [
   },
   {
     id: "3",
-    wrestler1: {
-      name: "Night Hawk",
-    },
-    wrestler2: {
-      name: "Red Dragon",
-    },
+    wrestler1: "Night Hawk",
+    wrestler2: "Red Dragon",
     date: "2024-04-15",
     time: "21:45",
     isCompleted: false,
@@ -43,12 +31,8 @@ export const matchups: Matchup[] = [
   },
   {
     id: "4",
-    wrestler1: {
-      name: "Storm Breaker",
-    },
-    wrestler2: {
-      name: "Iron Will",
-    },
+    wrestler1: "Storm Breaker",
+    wrestler2: "Iron Will",
     date: "2024-04-10",
     time: "19:30",
     isCompleted: true,
@@ -57,12 +41,8 @@ export const matchups: Matchup[] = [
   },
   {
     id: "5",
-    wrestler1: {
-      name: "Golden Phoenix",
-    },
-    wrestler2: {
-      name: "Quick Silver",
-    },
+    wrestler1: "Golden Phoenix",
+    wrestler2: "Quick Silver",
     date: "2024-04-22",
     time: "20:00",
     isCompleted: false,

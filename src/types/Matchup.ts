@@ -1,9 +1,7 @@
-import type { Wrestler } from "./Wrestler";
-
 export interface Matchup {
   id: string;
-  wrestler1: Wrestler;
-  wrestler2: Wrestler;
+  wrestler1: string;
+  wrestler2: string;
   date: string;
   time: string;
   isCompleted: boolean;
