@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Glass morphism and animations */
+@layer utilities {
+  .glass {
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-dark {
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
 
 @keyframes fadeIn {
   from {
@@ -36,4 +47,44 @@
 .animate-slide-up-fade {
   animation: slideUp 0.7s ease-out forwards;
   animation-delay: calc(var(--index, 0) * 100ms);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    rgba(99, 102, 241, 0.5),
+    rgba(168, 85, 247, 0.5)
+  );
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(99, 102, 241, 0.8),
+    rgba(168, 85, 247, 0.8)
+  );
+}
+
+/* Dark mode adjustments */
+.dark ::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body {
+  @apply bg-neutral-50 dark:bg-neutral-950;
 }

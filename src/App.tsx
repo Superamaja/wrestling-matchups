@@ -1,24 +1,22 @@
 import { Header } from "./components/Header";
-import { MatchupCard } from "./components/MatchupCard";
-import { matchups } from "./data/matchups";
+import { MatchupList } from "./components/MatchupList";
 import { BackgroundBeamsWithCollision } from "./components/ui/background-beams-with-collision";
 import "./App.css";
 
 function App() {
   return (
-    <BackgroundBeamsWithCollision className="min-h-screen">
-      <Header />
+    <div className="relative h-screen overflow-hidden">
+      <div className="fixed inset-0 z-0">
+        <BackgroundBeamsWithCollision />
+      </div>
 
-      <main className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {matchups.map((matchup) => (
-            <div key={matchup.id} className="opacity-0 animate-slide-up-fade">
-              <MatchupCard matchup={matchup} />
-            </div>
-          ))}
-        </div>
-      </main>
-    </BackgroundBeamsWithCollision>
+      <div className="relative z-10 h-screen overflow-y-auto scroll-smooth">
+        <Header />
+        <main className="container mx-auto px-4 py-8 pb-24">
+          <MatchupList />
+        </main>
+      </div>
+    </div>
   );
 }
 

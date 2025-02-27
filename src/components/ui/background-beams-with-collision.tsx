@@ -6,7 +6,7 @@ export const BackgroundBeamsWithCollision = ({
   children,
   className,
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -62,7 +62,7 @@ export const BackgroundBeamsWithCollision = ({
     <div
       ref={parentRef}
       className={cn(
-        "h-full min-h-screen bg-neutral-50 dark:bg-neutral-950 relative flex items-center w-full justify-center overflow-hidden",
+        "h-full w-full bg-neutral-50 dark:bg-neutral-950 relative flex items-center justify-center overflow-hidden",
         className
       )}
     >
@@ -87,6 +87,8 @@ export const BackgroundBeamsWithCollision = ({
     </div>
   );
 };
+
+// ... rest of the original component code remains unchanged
 
 const CollisionMechanism = React.forwardRef<
   HTMLDivElement,
