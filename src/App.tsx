@@ -1,11 +1,12 @@
 import { Header } from "./components/Header";
 import { MatchupCard } from "./components/MatchupCard";
 import { matchups } from "./data/matchups";
+import { BackgroundBeamsWithCollision } from "./components/ui/background-beams-with-collision";
 import "./App.css";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <BackgroundBeamsWithCollision className="min-h-screen">
       <Header />
 
       <main className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
@@ -17,7 +18,7 @@ function App() {
           ))}
         </div>
       </main>
-    </div>
+    </BackgroundBeamsWithCollision>
   );
 }
 
