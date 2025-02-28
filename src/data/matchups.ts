@@ -11,7 +11,7 @@ export const matchups: Matchup[] = [
     },
     date: "2025-02-27",
     time: "20:00",
-    isCompleted: false,
+    isCompleted: true,
     matchDescription: "In Bed",
     winner: "Connor Lin",
   },
@@ -25,7 +25,7 @@ export const matchups: Matchup[] = [
     },
     date: "2025-05-17",
     time: "18:00",
-    isCompleted: false,
+    isCompleted: true,
     matchDescription: "Match 1",
   },
   {
@@ -38,7 +38,7 @@ export const matchups: Matchup[] = [
     },
     date: "2025-05-17",
     time: "18:15",
-    isCompleted: false,
+    isCompleted: true,
     matchDescription: "Match 2",
   },
   {
@@ -51,7 +51,7 @@ export const matchups: Matchup[] = [
     },
     date: "2025-05-17",
     time: "18:30",
-    isCompleted: false,
+    isCompleted: true,
     matchDescription: "Match 3",
   },
   {
