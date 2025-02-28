@@ -22,7 +22,7 @@ export function Header() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center">
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-center animate-fade-in bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-center animate-fade-in bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 pb-2">
             Wrestling Matchups
           </h1>
 
