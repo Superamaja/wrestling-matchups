@@ -3,6 +3,7 @@ import type { Matchup } from "../types/Matchup";
 import { cn } from "../lib/utils";
 import { getWrestlerStats } from "../utils/wrestlerStats";
 import { matchups } from "../data/matchups";
+import { formatShortDate, formatFullDate, isToday } from "../utils/formatters";
 
 interface Props {
   matchup: Matchup;
@@ -11,8 +12,8 @@ interface Props {
 export function MatchupCard({ matchup }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const isToday =
-    new Date(matchup.date).toDateString() === new Date().toDateString();
+  // Use the isToday utility function instead of inline implementation
+  const isTodayMatch = isToday(matchup.date);
 
   // Calculate stats for each wrestler - update to use string directly
   const wrestler1Stats = getWrestlerStats(matchup.wrestler1.name, matchups);
@@ -27,7 +28,7 @@ export function MatchupCard({ matchup }: Props) {
         isHovered ? "transform scale-[1.02]" : "",
         matchup.isCompleted
           ? "bg-white/25 dark:bg-neutral-900/50"
-          : isToday
+          : isTodayMatch
           ? "bg-gradient-to-br from-white/30 to-indigo-50/30 dark:from-neutral-900/70 dark:to-indigo-950/50"
           : "bg-white/15 dark:bg-neutral-900/30"
       )}
@@ -41,22 +42,22 @@ export function MatchupCard({ matchup }: Props) {
             "px-3 py-1 rounded-full text-xs font-medium",
             matchup.isCompleted
               ? "bg-neutral-200/70 dark:bg-neutral-800/70 text-neutral-700 dark:text-neutral-300"
-              : isToday
+              : isTodayMatch
               ? "bg-gradient-to-r from-indigo-500/70 to-purple-500/70 text-white animate-pulse"
               : "bg-emerald-500/70 text-white"
           )}
         >
-          {matchup.isCompleted ? "Completed" : isToday ? "Today" : "Upcoming"}
+          {matchup.isCompleted
+            ? "Completed"
+            : isTodayMatch
+            ? "Today"
+            : "Upcoming"}
         </div>
       </div>
 
       {/* Date and time ribbon */}
       <div className="absolute -right-10 top-6 transform rotate-45 bg-gradient-to-r from-indigo-600/90 to-purple-600/90 text-white px-10 py-1 text-xs font-bold shadow-lg">
-        {new Date(matchup.date).toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric",
-        })}{" "}
-        {matchup.time}
+        {formatShortDate(matchup.date)} {matchup.time}
       </div>
 
       {/* Card content */}
@@ -170,12 +171,7 @@ export function MatchupCard({ matchup }: Props) {
 
       {/* Card footer - date and time */}
       <div className="py-3 px-6 bg-black/5 dark:bg-white/5 text-center text-xs text-neutral-600 dark:text-neutral-400 font-medium">
-        {new Date(matchup.date).toLocaleDateString("en-US", {
-          weekday: "long",
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        })}
+        {formatFullDate(matchup.date)}
         {" • "}
         {matchup.time}
       </div>

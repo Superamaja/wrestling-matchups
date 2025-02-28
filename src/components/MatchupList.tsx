@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MatchupCard } from "./MatchupCard";
 import { TimelineView } from "./TimelineView";
 import { matchups as allMatchups } from "../data/matchups";
+import { formatShortDate, formatShortWeekday } from "../utils/formatters";
 
 type FilterType = "all" | "upcoming" | "completed";
 type DayFilterType = "all" | "day1" | "day2";
@@ -137,11 +138,7 @@ export function MatchupList() {
                 : "text-neutral-600 dark:text-neutral-300 hover:bg-white/10"
             }`}
           >
-            {new Date(day1).toLocaleDateString("en-US", {
-              weekday: "short",
-              month: "short",
-              day: "numeric",
-            })}
+            {formatShortWeekday(day1)}, {formatShortDate(day1)}
           </button>
           <button
             onClick={() => setDayFilter("day2")}
@@ -151,11 +148,7 @@ export function MatchupList() {
                 : "text-neutral-600 dark:text-neutral-300 hover:bg-white/10"
             }`}
           >
-            {new Date(day2).toLocaleDateString("en-US", {
-              weekday: "short",
-              month: "short",
-              day: "numeric",
-            })}
+            {formatShortWeekday(day2)}, {formatShortDate(day2)}
           </button>
         </div>
       </div>

@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import type { Matchup } from "../types/Matchup";
 import { cn } from "../lib/utils";
 import { getWrestlerStats } from "../utils/wrestlerStats";
+import { formatMediumDate } from "../utils/formatters";
 
 interface TimelineViewProps {
   matchups: Matchup[];
@@ -50,10 +51,7 @@ export function TimelineView({ matchups, allMatchups }: TimelineViewProps) {
       const matchup = chronologicalMatchups[i];
       const matchupDateTime = new Date(`${matchup.date}T${matchup.time}`);
 
-      // Approximate match duration as 15 minutes
-      const matchEndTime = new Date(matchupDateTime.getTime() + 15 * 60 * 1000);
-
-      if (matchupDateTime <= now && now <= matchEndTime) {
+      if (matchupDateTime <= now) {
         currentMatch = matchup;
         nextMatch = chronologicalMatchups[i + 1] || null;
         break;
@@ -74,11 +72,7 @@ export function TimelineView({ matchups, allMatchups }: TimelineViewProps) {
         <div key={date} className="space-y-4">
           <div className="sticky top-16 z-10 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md p-3 rounded-lg shadow">
             <h2 className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
-              {new Date(date).toLocaleDateString("en-US", {
-                weekday: "long",
-                month: "long",
-                day: "numeric",
-              })}
+              {formatMediumDate(date)}
             </h2>
           </div>
 

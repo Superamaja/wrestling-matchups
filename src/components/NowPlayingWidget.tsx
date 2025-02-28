@@ -1,6 +1,7 @@
 import { useMemo, useEffect, useState } from "react";
 import type { Matchup } from "../types/Matchup";
 import { cn } from "../lib/utils";
+import { formatShortDate } from "../utils/formatters";
 
 interface NowPlayingWidgetProps {
   matchups: Matchup[];
@@ -139,11 +140,7 @@ export function NowPlayingWidget({ matchups }: NowPlayingWidgetProps) {
                 VS
               </div>
               <div className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
-                {new Date(match.date).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                })}{" "}
-                {match.time}
+                {formatShortDate(match.date)} {match.time}
               </div>
             </div>
 
