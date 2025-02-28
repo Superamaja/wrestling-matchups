@@ -27,6 +27,7 @@ export const matchups: Matchup[] = [
     time: "18:00",
     isCompleted: true,
     matchDescription: "Match 1",
+    winner: "Will In",
   },
   {
     id: "2",
@@ -40,6 +41,7 @@ export const matchups: Matchup[] = [
     time: "18:15",
     isCompleted: true,
     matchDescription: "Match 2",
+    winner: "Joseph Jung",
   },
   {
     id: "3",
@@ -53,6 +55,7 @@ export const matchups: Matchup[] = [
     time: "18:30",
     isCompleted: true,
     matchDescription: "Match 3",
+    winner: "Chris Ding",
   },
   {
     id: "4",
