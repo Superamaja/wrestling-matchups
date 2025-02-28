@@ -27,7 +27,7 @@ export function TimelineItem({
       <div className="absolute -left-10 top-6 flex items-center justify-center">
         <div
           className={cn(
-            "h-6 w-6 rounded-full flex items-center justify-center text-xs font-semibold",
+            "h-6 w-6 rounded-full flex items-center justify-center text-xs font-semibold text-white",
             matchup.isCompleted
               ? "bg-neutral-200 dark:bg-neutral-700"
               : isCurrentMatch
