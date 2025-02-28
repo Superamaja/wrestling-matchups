@@ -29,7 +29,7 @@ export const BackgroundBeamsWithCollision = ({
       repeatDelay: 3,
       delay: 4,
       className:
-        "h-24 bg-gradient-to-t from-purple-200 via-indigo-200 to-transparent opacity-40",
+        "h-24 bg-gradient-to-t from-purple-500 via-indigo-500 to-transparent opacity-40",
     },
     {
       initialX: 100,
@@ -46,7 +46,7 @@ export const BackgroundBeamsWithCollision = ({
       repeatDelay: 8,
       delay: 4,
       className:
-        "h-28 bg-gradient-to-t from-purple-300 via-indigo-300 to-transparent opacity-40",
+        "h-28 bg-gradient-to-t from-purple-700 via-indigo-700 to-transparent opacity-40",
     },
     {
       initialX: 800,
@@ -54,7 +54,31 @@ export const BackgroundBeamsWithCollision = ({
       duration: 8,
       repeatDelay: 5,
       className:
-        "h-20 bg-gradient-to-t from-indigo-200 via-purple-200 to-transparent opacity-50",
+        "h-16 bg-gradient-to-t from-indigo-200 via-purple-200 to-transparent opacity-50",
+    },
+    {
+      initialX: 1000,
+      translateX: 1000,
+      duration: 4,
+      repeatDelay: 2,
+      className:
+        "h-24 bg-gradient-to-t from-indigo-600 via-purple-600 to-transparent opacity-50",
+    },
+    {
+      initialX: 1200,
+      translateX: 1200,
+      duration: 9,
+      repeatDelay: 6,
+      className:
+        "h-32 bg-gradient-to-t from-indigo-400 via-purple-400 to-transparent opacity-50",
+    },
+    {
+      initialX: 1800,
+      translateX: 1800,
+      duration: 7,
+      repeatDelay: 3,
+      className:
+        "h-28 bg-gradient-to-t from-indigo-300 via-purple-300 to-transparent opacity-50",
     },
   ];
 
