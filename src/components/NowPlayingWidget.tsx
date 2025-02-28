@@ -3,6 +3,7 @@ import type { Matchup } from "../types/Matchup";
 import { cn } from "../lib/utils";
 import { formatShortDate } from "../utils/formatters";
 import { getCurrentAndNextMatch } from "../utils/matchupUtils";
+import { WrestlerAvatar } from "./WrestlerAvatar";
 
 interface NowPlayingWidgetProps {
   matchups: Matchup[];
@@ -78,14 +79,7 @@ export function NowPlayingWidget({ matchups }: NowPlayingWidgetProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
             {/* Wrestler 1 */}
-            <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-2xl font-bold">
-                {match.wrestler1.name.charAt(0)}
-              </div>
-              <p className="mt-2 font-bold text-white">
-                {match.wrestler1.name}
-              </p>
-            </div>
+            <WrestlerAvatar wrestler={match.wrestler1} size="md" />
 
             {/* VS */}
             <div className="flex flex-col items-center">
@@ -98,14 +92,11 @@ export function NowPlayingWidget({ matchups }: NowPlayingWidgetProps) {
             </div>
 
             {/* Wrestler 2 */}
-            <div className="text-center">
-              <div className="h-16 w-16 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center text-white text-2xl font-bold">
-                {match.wrestler2.name.charAt(0)}
-              </div>
-              <p className="mt-2 font-bold text-white">
-                {match.wrestler2.name}
-              </p>
-            </div>
+            <WrestlerAvatar
+              wrestler={match.wrestler2}
+              size="md"
+              gradientDirection="reverse"
+            />
           </div>
         </div>
       </div>

@@ -1,9 +1,8 @@
 import { useState } from "react";
 import type { Matchup } from "../types/Matchup";
 import { cn } from "../lib/utils";
-import { getWrestlerStats } from "../utils/wrestlerStats";
-import { matchups } from "../data/matchups";
 import { formatShortDate, formatFullDate, isToday } from "../utils/formatters";
+import { WrestlerAvatar } from "./WrestlerAvatar";
 
 interface Props {
   matchup: Matchup;
@@ -14,10 +13,6 @@ export function MatchupCard({ matchup }: Props) {
 
   // Use the isToday utility function instead of inline implementation
   const isTodayMatch = isToday(matchup.date);
-
-  // Calculate stats for each wrestler - update to use string directly
-  const wrestler1Stats = getWrestlerStats(matchup.wrestler1.name, matchups);
-  const wrestler2Stats = getWrestlerStats(matchup.wrestler2.name, matchups);
 
   return (
     <div
@@ -74,36 +69,17 @@ export function MatchupCard({ matchup }: Props) {
         <div className="flex items-center justify-between space-x-2">
           {/* Wrestler 1 */}
           <div className="flex-1">
-            <div
-              className={cn(
-                "relative h-24 w-24 mx-auto mb-3 rounded-full overflow-hidden border-4",
-                matchup.isCompleted && matchup.winner === matchup.wrestler1.name
-                  ? "border-yellow-400 shadow-lg shadow-yellow-400/20"
-                  : "border-white/20"
-              )}
-            >
-              <div className="h-full w-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-xl font-bold">
-                {matchup.wrestler1.name.charAt(0)}
-              </div>
-            </div>
-            <div className="text-center">
-              <h3 className="text-lg font-bold text-neutral-800 dark:text-white transition-transform group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
-                {matchup.wrestler1.name}
-              </h3>
-              <div className="mt-1 flex items-center justify-center space-x-2">
-                <span className="text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 py-0.5 px-2 rounded-full">
-                  {wrestler1Stats.wins}W
-                </span>
-                <span className="text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400 py-0.5 px-2 rounded-full">
-                  {wrestler1Stats.losses}L
-                </span>
-              </div>
-              <div className="mt-2 h-1.5 w-full bg-neutral-200/50 dark:bg-neutral-700/50 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-gradient-to-r from-indigo-500 to-purple-500"
-                  style={{ width: `${wrestler1Stats.winRate}%` }}
-                />
-              </div>
+            <div className="mx-auto mb-2">
+              <WrestlerAvatar
+                wrestler={matchup.wrestler1}
+                size="lg"
+                isWinner={
+                  matchup.isCompleted &&
+                  matchup.winner === matchup.wrestler1.name
+                }
+                showStats={true}
+                gradientDirection="default"
+              />
             </div>
           </div>
 
@@ -123,36 +99,17 @@ export function MatchupCard({ matchup }: Props) {
 
           {/* Wrestler 2 */}
           <div className="flex-1">
-            <div
-              className={cn(
-                "relative h-24 w-24 mx-auto mb-3 rounded-full overflow-hidden border-4",
-                matchup.isCompleted && matchup.winner === matchup.wrestler2.name
-                  ? "border-yellow-400 shadow-lg shadow-yellow-400/20"
-                  : "border-white/20"
-              )}
-            >
-              <div className="h-full w-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center text-white text-xl font-bold">
-                {matchup.wrestler2.name.charAt(0)}
-              </div>
-            </div>
-            <div className="text-center">
-              <h3 className="text-lg font-bold text-neutral-800 dark:text-white transition-transform group-hover:text-purple-600 dark:group-hover:text-purple-400">
-                {matchup.wrestler2.name}
-              </h3>
-              <div className="mt-1 flex items-center justify-center space-x-2">
-                <span className="text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 py-0.5 px-2 rounded-full">
-                  {wrestler2Stats.wins}W
-                </span>
-                <span className="text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400 py-0.5 px-2 rounded-full">
-                  {wrestler2Stats.losses}L
-                </span>
-              </div>
-              <div className="mt-2 h-1.5 w-full bg-neutral-200/50 dark:bg-neutral-700/50 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-gradient-to-r from-purple-500 to-indigo-500"
-                  style={{ width: `${wrestler2Stats.winRate}%` }}
-                />
-              </div>
+            <div className="mx-auto mb-2">
+              <WrestlerAvatar
+                wrestler={matchup.wrestler2}
+                size="lg"
+                isWinner={
+                  matchup.isCompleted &&
+                  matchup.winner === matchup.wrestler2.name
+                }
+                showStats={true}
+                gradientDirection="reverse"
+              />
             </div>
           </div>
         </div>

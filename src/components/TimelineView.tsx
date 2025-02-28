@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import type { Matchup } from "../types/Matchup";
 import { cn } from "../lib/utils";
-import { getWrestlerStats } from "../utils/wrestlerStats";
 import { formatMediumDate } from "../utils/formatters";
 import {
   getCurrentAndNextMatch,
   groupMatchupsByDate,
 } from "../utils/matchupUtils";
+import { WrestlerAvatar } from "./WrestlerAvatar";
 
 interface TimelineViewProps {
   matchups: Matchup[];
@@ -43,16 +43,6 @@ export function TimelineView({ matchups, allMatchups }: TimelineViewProps) {
             {matchupsByDate[date].map((matchup) => {
               const isCurrentMatch = currentMatch?.id === matchup.id;
               const isNextMatch = nextMatch?.id === matchup.id;
-
-              // Get stats for each wrestler
-              const wrestler1Stats = getWrestlerStats(
-                matchup.wrestler1.name,
-                allMatchups
-              );
-              const wrestler2Stats = getWrestlerStats(
-                matchup.wrestler2.name,
-                allMatchups
-              );
 
               return (
                 <div
@@ -137,32 +127,15 @@ export function TimelineView({ matchups, allMatchups }: TimelineViewProps) {
                     <div className="flex items-center justify-between">
                       {/* Wrestler 1 */}
                       <div className="flex-1 text-center">
-                        <div className="flex items-center justify-center space-x-2">
-                          <div
-                            className={cn(
-                              "h-10 w-10 rounded-full flex items-center justify-center",
-                              "bg-gradient-to-br from-indigo-500 to-purple-500 text-white font-bold",
-                              matchup.isCompleted &&
-                                matchup.winner === matchup.wrestler1.name &&
-                                "ring-2 ring-yellow-400"
-                            )}
-                          >
-                            {matchup.wrestler1.name.charAt(0)}
-                          </div>
-                          <div className="text-left">
-                            <h3 className="text-sm font-bold text-white">
-                              {matchup.wrestler1.name}
-                            </h3>
-                            <div className="flex items-center space-x-1 mt-0.5">
-                              <span className="text-xs bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 px-1 rounded">
-                                {wrestler1Stats.wins}W
-                              </span>
-                              <span className="text-xs bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400 px-1 rounded">
-                                {wrestler1Stats.losses}L
-                              </span>
-                            </div>
-                          </div>
-                        </div>
+                        <WrestlerAvatar
+                          wrestler={matchup.wrestler1}
+                          size="sm"
+                          isWinner={
+                            matchup.isCompleted &&
+                            matchup.winner === matchup.wrestler1.name
+                          }
+                          showStats={true}
+                        />
                       </div>
 
                       {/* VS */}
@@ -174,32 +147,16 @@ export function TimelineView({ matchups, allMatchups }: TimelineViewProps) {
 
                       {/* Wrestler 2 */}
                       <div className="flex-1 text-center">
-                        <div className="flex items-center justify-center space-x-2">
-                          <div className="text-right">
-                            <h3 className="text-sm font-bold text-white">
-                              {matchup.wrestler2.name}
-                            </h3>
-                            <div className="flex items-center space-x-1 mt-0.5 justify-end">
-                              <span className="text-xs bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 px-1 rounded">
-                                {wrestler2Stats.wins}W
-                              </span>
-                              <span className="text-xs bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400 px-1 rounded">
-                                {wrestler2Stats.losses}L
-                              </span>
-                            </div>
-                          </div>
-                          <div
-                            className={cn(
-                              "h-10 w-10 rounded-full flex items-center justify-center",
-                              "bg-gradient-to-br from-purple-500 to-indigo-500 text-white font-bold",
-                              matchup.isCompleted &&
-                                matchup.winner === matchup.wrestler2.name &&
-                                "ring-2 ring-yellow-400"
-                            )}
-                          >
-                            {matchup.wrestler2.name.charAt(0)}
-                          </div>
-                        </div>
+                        <WrestlerAvatar
+                          wrestler={matchup.wrestler2}
+                          size="sm"
+                          isWinner={
+                            matchup.isCompleted &&
+                            matchup.winner === matchup.wrestler2.name
+                          }
+                          showStats={true}
+                          gradientDirection="reverse"
+                        />
                       </div>
                     </div>
 
