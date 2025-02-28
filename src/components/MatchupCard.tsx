@@ -11,8 +11,6 @@ interface Props {
 
 export function MatchupCard({ matchup }: Props) {
   const [isHovered, setIsHovered] = useState(false);
-
-  // Use the isToday utility function instead of inline implementation
   const isTodayMatch = isToday(matchup.date);
 
   return (
