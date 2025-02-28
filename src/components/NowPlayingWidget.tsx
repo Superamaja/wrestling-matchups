@@ -4,6 +4,7 @@ import { cn } from "../lib/utils";
 import { formatShortDate } from "../utils/formatters";
 import { getCurrentAndNextMatch } from "../utils/matchupUtils";
 import { WrestlerAvatar } from "./WrestlerAvatar";
+import { MatchStatus } from "./MatchStatus";
 
 interface NowPlayingWidgetProps {
   matchups: Matchup[];
@@ -38,29 +39,13 @@ export function NowPlayingWidget({ matchups }: NowPlayingWidgetProps) {
     timeInfo?: string
   ) => {
     const isCurrentMatch = status === "current";
+    const statusType = isCurrentMatch ? "live" : "next";
 
     return (
       <div className={cn(isCurrentMatch && nextMatch ? "mb-6" : "")}>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
-            <div
-              className={cn(
-                "h-3 w-3 rounded-full",
-                isCurrentMatch ? "bg-red-500 animate-pulse" : "bg-green-500"
-              )}
-            ></div>
-            <span
-              className={cn(
-                "text-sm font-semibold",
-                isCurrentMatch ? "text-red-500" : "text-green-500"
-              )}
-            >
-              {isCurrentMatch
-                ? "LIVE NOW"
-                : currentMatch
-                ? "UP NEXT"
-                : "STARTING SOON"}
-            </span>
+            <MatchStatus status={statusType} className="py-0.5" />
           </div>
           <div className="text-sm text-neutral-500 dark:text-neutral-400">
             {timeInfo && (

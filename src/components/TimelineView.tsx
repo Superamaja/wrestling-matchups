@@ -7,6 +7,7 @@ import {
   groupMatchupsByDate,
 } from "../utils/matchupUtils";
 import { WrestlerAvatar } from "./WrestlerAvatar";
+import { MatchStatus, MatchStatusType } from "./MatchStatus";
 
 interface TimelineViewProps {
   matchups: Matchup[];
@@ -43,6 +44,15 @@ export function TimelineView({ matchups, allMatchups }: TimelineViewProps) {
             {matchupsByDate[date].map((matchup) => {
               const isCurrentMatch = currentMatch?.id === matchup.id;
               const isNextMatch = nextMatch?.id === matchup.id;
+
+              // Determine status type
+              const statusType: MatchStatusType = matchup.isCompleted
+                ? "completed"
+                : isCurrentMatch
+                ? "live"
+                : isNextMatch
+                ? "next"
+                : "upcoming";
 
               return (
                 <div
@@ -93,28 +103,7 @@ export function TimelineView({ matchups, allMatchups }: TimelineViewProps) {
                   >
                     {/* Status indicator */}
                     <div className="flex justify-between items-start mb-3">
-                      <div
-                        className={cn(
-                          "px-2 py-0.5 rounded-full text-xs font-medium inline-flex items-center space-x-1",
-                          matchup.isCompleted
-                            ? "bg-neutral-200/70 dark:bg-neutral-800/70 text-neutral-700 dark:text-neutral-300"
-                            : isCurrentMatch
-                            ? "bg-gradient-to-r from-red-500/70 to-orange-500/70 text-white animate-pulse"
-                            : isNextMatch
-                            ? "bg-gradient-to-r from-green-500/70 to-emerald-500/70 text-white"
-                            : "bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300"
-                        )}
-                      >
-                        <span>
-                          {matchup.isCompleted
-                            ? "Completed"
-                            : isCurrentMatch
-                            ? "Live Now"
-                            : isNextMatch
-                            ? "Up Next"
-                            : "Upcoming"}
-                        </span>
-                      </div>
+                      <MatchStatus status={statusType} compact={true} />
 
                       {matchup.matchDescription && (
                         <span className="text-xs font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-2 py-0.5 rounded">

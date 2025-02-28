@@ -3,6 +3,7 @@ import type { Matchup } from "../types/Matchup";
 import { cn } from "../lib/utils";
 import { formatShortDate, formatFullDate, isToday } from "../utils/formatters";
 import { WrestlerAvatar } from "./WrestlerAvatar";
+import { MatchStatus } from "./MatchStatus";
 
 interface Props {
   matchup: Matchup;
@@ -32,22 +33,15 @@ export function MatchupCard({ matchup }: Props) {
     >
       {/* Status indicator */}
       <div className="absolute top-4 left-4 z-20">
-        <div
-          className={cn(
-            "px-3 py-1 rounded-full text-xs font-medium",
+        <MatchStatus
+          status={
             matchup.isCompleted
-              ? "bg-neutral-200/70 dark:bg-neutral-800/70 text-neutral-700 dark:text-neutral-300"
+              ? "completed"
               : isTodayMatch
-              ? "bg-gradient-to-r from-indigo-500/70 to-purple-500/70 text-white animate-pulse"
-              : "bg-emerald-500/70 text-white"
-          )}
-        >
-          {matchup.isCompleted
-            ? "Completed"
-            : isTodayMatch
-            ? "Today"
-            : "Upcoming"}
-        </div>
+              ? "today"
+              : "upcoming"
+          }
+        />
       </div>
 
       {/* Date and time ribbon */}
