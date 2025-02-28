@@ -6,7 +6,7 @@ A React web application for tracking wrestling events among friends with interac
 
 ## Overview
 
-Wrestling Matchups is an interactive web application built with React and TypeScript that allows you to track and showcase wrestling matchups between friends. The app features a sleek, modern interface with animations, and provides multiple view modes to display matches in an engaging way.
+Wrestling Matchups is an interactive web application built with React and TypeScript that allows you to track and showcase wrestling matchups between friends. The app features a sleek, modern interface with animations, and provides multiple view modes to display matches in an engaging way. I built this to keep track of my friend group's 20+ sudden wrestling matchups planned between one another.
 
 ## Features
 
