@@ -11,10 +11,9 @@ import { MatchStatus, MatchStatusType } from "./MatchStatus";
 
 interface TimelineViewProps {
   matchups: Matchup[];
-  allMatchups: Matchup[];
 }
 
-export function TimelineView({ matchups, allMatchups }: TimelineViewProps) {
+export function TimelineView({ matchups }: TimelineViewProps) {
   // Group matchups by date using utility function
   const matchupsByDate = useMemo(
     () => groupMatchupsByDate(matchups),

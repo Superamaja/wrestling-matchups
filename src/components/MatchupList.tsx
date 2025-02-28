@@ -156,7 +156,7 @@ export function MatchupList() {
         </div>
       ) : (
         <div className="max-w-4xl mx-auto">
-          <TimelineView matchups={sortedMatchups} allMatchups={allMatchups} />
+          <TimelineView matchups={sortedMatchups} />
         </div>
       )}
 
