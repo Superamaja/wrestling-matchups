@@ -9,9 +9,9 @@ export const matchups: Matchup[] = [
     wrestler2: {
       name: "Ur Mom",
     },
-    date: "2024-02-27",
-    time: "3:14",
-    isCompleted: true,
+    date: "2025-02-27",
+    time: "20:00",
+    isCompleted: false,
     matchDescription: "In Bed",
     winner: "Connor Lin",
   },
