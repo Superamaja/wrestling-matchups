@@ -15,8 +15,8 @@ export function MatchupCard({ matchup }: Props) {
     new Date(matchup.date).toDateString() === new Date().toDateString();
 
   // Calculate stats for each wrestler - update to use string directly
-  const wrestler1Stats = getWrestlerStats(matchup.wrestler1, matchups);
-  const wrestler2Stats = getWrestlerStats(matchup.wrestler2, matchups);
+  const wrestler1Stats = getWrestlerStats(matchup.wrestler1.name, matchups);
+  const wrestler2Stats = getWrestlerStats(matchup.wrestler2.name, matchups);
 
   return (
     <div
@@ -76,18 +76,18 @@ export function MatchupCard({ matchup }: Props) {
             <div
               className={cn(
                 "relative h-24 w-24 mx-auto mb-3 rounded-full overflow-hidden border-4",
-                matchup.isCompleted && matchup.winner === matchup.wrestler1
+                matchup.isCompleted && matchup.winner === matchup.wrestler1.name
                   ? "border-yellow-400 shadow-lg shadow-yellow-400/20"
                   : "border-white/20"
               )}
             >
               <div className="h-full w-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-xl font-bold">
-                {matchup.wrestler1.charAt(0)}
+                {matchup.wrestler1.name.charAt(0)}
               </div>
             </div>
             <div className="text-center">
               <h3 className="text-lg font-bold text-neutral-800 dark:text-white transition-transform group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
-                {matchup.wrestler1}
+                {matchup.wrestler1.name}
               </h3>
               <div className="mt-1 flex items-center justify-center space-x-2">
                 <span className="text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 py-0.5 px-2 rounded-full">
@@ -125,18 +125,18 @@ export function MatchupCard({ matchup }: Props) {
             <div
               className={cn(
                 "relative h-24 w-24 mx-auto mb-3 rounded-full overflow-hidden border-4",
-                matchup.isCompleted && matchup.winner === matchup.wrestler2
+                matchup.isCompleted && matchup.winner === matchup.wrestler2.name
                   ? "border-yellow-400 shadow-lg shadow-yellow-400/20"
                   : "border-white/20"
               )}
             >
               <div className="h-full w-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center text-white text-xl font-bold">
-                {matchup.wrestler2.charAt(0)}
+                {matchup.wrestler2.name.charAt(0)}
               </div>
             </div>
             <div className="text-center">
               <h3 className="text-lg font-bold text-neutral-800 dark:text-white transition-transform group-hover:text-purple-600 dark:group-hover:text-purple-400">
-                {matchup.wrestler2}
+                {matchup.wrestler2.name}
               </h3>
               <div className="mt-1 flex items-center justify-center space-x-2">
                 <span className="text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 py-0.5 px-2 rounded-full">

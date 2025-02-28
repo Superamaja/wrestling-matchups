@@ -3,8 +3,12 @@ import type { Matchup } from "../types/Matchup";
 export const matchups: Matchup[] = [
   {
     id: "0",
-    wrestler1: "Connor Lin",
-    wrestler2: "Ur Mom",
+    wrestler1: {
+      name: "Connor Lin",
+    },
+    wrestler2: {
+      name: "Ur Mom",
+    },
     date: "2024-02-27",
     time: "3:14",
     isCompleted: true,
@@ -13,8 +17,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "1",
-    wrestler1: "Will In",
-    wrestler2: "Ryan Dong",
+    wrestler1: {
+      name: "Will In",
+    },
+    wrestler2: {
+      name: "Ryan Dong",
+    },
     date: "2024-05-17",
     time: "18:00",
     isCompleted: false,
@@ -22,8 +30,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "2",
-    wrestler1: "Will In",
-    wrestler2: "Joseph Jung",
+    wrestler1: {
+      name: "Will In",
+    },
+    wrestler2: {
+      name: "Joseph Jung",
+    },
     date: "2024-05-17",
     time: "18:15",
     isCompleted: false,
@@ -31,8 +43,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "3",
-    wrestler1: "Chris Ding",
-    wrestler2: "Joseph Jung",
+    wrestler1: {
+      name: "Chris Ding",
+    },
+    wrestler2: {
+      name: "Joseph Jung",
+    },
     date: "2024-05-17",
     time: "18:30",
     isCompleted: false,
@@ -40,8 +56,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "4",
-    wrestler1: "Jesse Park",
-    wrestler2: "Joseph Jung",
+    wrestler1: {
+      name: "Jesse Park",
+    },
+    wrestler2: {
+      name: "Joseph Jung",
+    },
     date: "2024-05-17",
     time: "18:45",
     isCompleted: false,
@@ -49,8 +69,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "5",
-    wrestler1: "Ryan Choi",
-    wrestler2: "Josh Lim",
+    wrestler1: {
+      name: "Ryan Choi",
+    },
+    wrestler2: {
+      name: "Josh Lim",
+    },
     date: "2024-05-17",
     time: "19:00",
     isCompleted: false,
@@ -58,8 +82,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "6",
-    wrestler1: "Ryan Choi",
-    wrestler2: "Ethan Yao",
+    wrestler1: {
+      name: "Ryan Choi",
+    },
+    wrestler2: {
+      name: "Ethan Yao",
+    },
     date: "2024-05-17",
     time: "19:15",
     isCompleted: false,
@@ -67,8 +95,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "7",
-    wrestler1: "Josh Lim",
-    wrestler2: "Ethan Yao",
+    wrestler1: {
+      name: "Josh Lim",
+    },
+    wrestler2: {
+      name: "Ethan Yao",
+    },
     date: "2024-05-17",
     time: "19:30",
     isCompleted: false,
@@ -76,8 +108,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "8",
-    wrestler1: "Josh Lim",
-    wrestler2: "Jesse Park",
+    wrestler1: {
+      name: "Josh Lim",
+    },
+    wrestler2: {
+      name: "Jesse Park",
+    },
     date: "2024-05-17",
     time: "19:45",
     isCompleted: false,
@@ -85,8 +121,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "9",
-    wrestler1: "Connor Lin",
-    wrestler2: "Ryan Chen",
+    wrestler1: {
+      name: "Connor Lin",
+    },
+    wrestler2: {
+      name: "Ryan Chen",
+    },
     date: "2024-05-17",
     time: "20:00",
     isCompleted: false,
@@ -94,8 +134,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "10",
-    wrestler1: "Caleb Song",
-    wrestler2: "Ishaan Bhonagiri",
+    wrestler1: {
+      name: "Caleb Song",
+    },
+    wrestler2: {
+      name: "Ishaan Bhonagiri",
+    },
     date: "2024-05-17",
     time: "20:15",
     isCompleted: false,
@@ -103,8 +147,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "11",
-    wrestler1: "Caleb Song",
-    wrestler2: "Josh Lim",
+    wrestler1: {
+      name: "Caleb Song",
+    },
+    wrestler2: {
+      name: "Josh Lim",
+    },
     date: "2024-05-17",
     time: "20:30",
     isCompleted: false,
@@ -112,8 +160,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "12",
-    wrestler1: "Caleb Song",
-    wrestler2: "Chris Ding",
+    wrestler1: {
+      name: "Caleb Song",
+    },
+    wrestler2: {
+      name: "Chris Ding",
+    },
     date: "2024-05-17",
     time: "20:45",
     isCompleted: false,
@@ -121,8 +173,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "13",
-    wrestler1: "Chris Ding",
-    wrestler2: "Johnathan Wei",
+    wrestler1: {
+      name: "Chris Ding",
+    },
+    wrestler2: {
+      name: "Johnathan Wei",
+    },
     date: "2024-05-17",
     time: "21:00",
     isCompleted: false,
@@ -130,8 +186,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "14",
-    wrestler1: "Patrick Enoiu",
-    wrestler2: "Sangyoon Lee",
+    wrestler1: {
+      name: "Patrick Enoiu",
+    },
+    wrestler2: {
+      name: "Sangyoon Lee",
+    },
     date: "2024-05-17",
     time: "21:15",
     isCompleted: false,
@@ -139,8 +199,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "15",
-    wrestler1: "Patrick Enoiu",
-    wrestler2: "Ryan Choi",
+    wrestler1: {
+      name: "Patrick Enoiu",
+    },
+    wrestler2: {
+      name: "Ryan Choi",
+    },
     date: "2024-05-17",
     time: "21:30",
     isCompleted: false,
@@ -148,8 +212,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "16",
-    wrestler1: "Patrick Enoiu",
-    wrestler2: "Hayden Cho",
+    wrestler1: {
+      name: "Patrick Enoiu",
+    },
+    wrestler2: {
+      name: "Hayden Cho",
+    },
     date: "2024-05-17",
     time: "21:45",
     isCompleted: false,
@@ -157,8 +225,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "17",
-    wrestler1: "Hayden Cho",
-    wrestler2: "Ryan Choi",
+    wrestler1: {
+      name: "Hayden Cho",
+    },
+    wrestler2: {
+      name: "Ryan Choi",
+    },
     date: "2024-06-21",
     time: "18:00",
     isCompleted: false,
@@ -166,8 +238,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "18",
-    wrestler1: "Connor Lin",
-    wrestler2: "Rahul Piramanayagam",
+    wrestler1: {
+      name: "Connor Lin",
+    },
+    wrestler2: {
+      name: "Rahul Piramanayagam",
+    },
     date: "2024-06-21",
     time: "18:15",
     isCompleted: false,
@@ -175,8 +251,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "19",
-    wrestler1: "Ethan Lin",
-    wrestler2: "Josh Lim",
+    wrestler1: {
+      name: "Ethan Lin",
+    },
+    wrestler2: {
+      name: "Josh Lim",
+    },
     date: "2024-06-21",
     time: "18:30",
     isCompleted: false,
@@ -184,8 +264,12 @@ export const matchups: Matchup[] = [
   },
   {
     id: "20",
-    wrestler1: "Hayden Cho",
-    wrestler2: "Josh Lim",
+    wrestler1: {
+      name: "Hayden Cho",
+    },
+    wrestler2: {
+      name: "Josh Lim",
+    },
     date: "2024-06-21",
     time: "18:45",
     isCompleted: false,
