@@ -1,7 +1,8 @@
-import { useMemo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Matchup } from "../types/Matchup";
 import { cn } from "../lib/utils";
 import { formatShortDate } from "../utils/formatters";
+import { getCurrentAndNextMatch } from "../utils/matchupUtils";
 
 interface NowPlayingWidgetProps {
   matchups: Matchup[];
@@ -19,59 +20,11 @@ export function NowPlayingWidget({ matchups }: NowPlayingWidgetProps) {
     return () => clearInterval(interval);
   }, []);
 
-  // Find current and next match
-  const { currentMatch, nextMatch, timeUntilNext } = useMemo(() => {
-    let currentMatch: Matchup | null = null;
-    let nextMatch: Matchup | null = null;
-    let timeUntilNext: string = "";
-
-    // Sort all matchups chronologically
-    const upcomingMatchups = matchups
-      .filter((m) => !m.isCompleted)
-      .sort((a, b) => {
-        const dateTimeA = new Date(`${a.date}T${a.time}`).getTime();
-        const dateTimeB = new Date(`${b.date}T${b.time}`).getTime();
-        return dateTimeA - dateTimeB;
-      });
-
-    // Find current and next match
-    for (let i = 0; i < upcomingMatchups.length; i++) {
-      const matchup = upcomingMatchups[i];
-      const matchupDateTime = new Date(`${matchup.date}T${matchup.time}`);
-
-      if (matchupDateTime <= now) {
-        currentMatch = matchup;
-        nextMatch = upcomingMatchups[i + 1] || null;
-
-        if (nextMatch) {
-          const nextMatchTime = new Date(`${nextMatch.date}T${nextMatch.time}`);
-          const minutesUntilNext = Math.floor(
-            (nextMatchTime.getTime() - now.getTime()) / 60000
-          );
-          timeUntilNext = `${minutesUntilNext} min`;
-        }
-
-        break;
-      } else if (matchupDateTime > now) {
-        nextMatch = matchup;
-
-        const minutesUntilNext = Math.floor(
-          (matchupDateTime.getTime() - now.getTime()) / 60000
-        );
-        if (minutesUntilNext < 60) {
-          timeUntilNext = `${minutesUntilNext} min`;
-        } else {
-          const hoursUntilNext = Math.floor(minutesUntilNext / 60);
-          const remainingMinutes = minutesUntilNext % 60;
-          timeUntilNext = `${hoursUntilNext}h ${remainingMinutes}m`;
-        }
-
-        break;
-      }
-    }
-
-    return { currentMatch, nextMatch, timeUntilNext };
-  }, [matchups, now]);
+  // Use centralized utility to find current and next match
+  const { currentMatch, nextMatch, timeUntilNext } = getCurrentAndNextMatch(
+    matchups,
+    now
+  );
 
   if (!currentMatch && !nextMatch) {
     return null;

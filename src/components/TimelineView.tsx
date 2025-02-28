@@ -3,6 +3,10 @@ import type { Matchup } from "../types/Matchup";
 import { cn } from "../lib/utils";
 import { getWrestlerStats } from "../utils/wrestlerStats";
 import { formatMediumDate } from "../utils/formatters";
+import {
+  getCurrentAndNextMatch,
+  groupMatchupsByDate,
+} from "../utils/matchupUtils";
 
 interface TimelineViewProps {
   matchups: Matchup[];
@@ -10,61 +14,20 @@ interface TimelineViewProps {
 }
 
 export function TimelineView({ matchups, allMatchups }: TimelineViewProps) {
-  // Group matchups by date
-  const matchupsByDate = useMemo(() => {
-    const grouped = matchups.reduce((acc, matchup) => {
-      if (!acc[matchup.date]) {
-        acc[matchup.date] = [];
-      }
-      acc[matchup.date].push(matchup);
-      return acc;
-    }, {} as Record<string, Matchup[]>);
-
-    // Sort by time within each date group
-    Object.keys(grouped).forEach((date) => {
-      grouped[date].sort((a, b) => {
-        return a.time.localeCompare(b.time);
-      });
-    });
-
-    return grouped;
-  }, [matchups]);
+  // Group matchups by date using utility function
+  const matchupsByDate = useMemo(
+    () => groupMatchupsByDate(matchups),
+    [matchups]
+  );
 
   // Get dates in order
   const dates = Object.keys(matchupsByDate).sort();
 
-  // Check if a matchup is happening now or is the next match
-  const getCurrentAndNextMatch = () => {
-    const now = new Date();
-    let currentMatch: Matchup | null = null;
-    let nextMatch: Matchup | null = null;
-
-    // Sort all matchups chronologically
-    const chronologicalMatchups = [...matchups].sort((a, b) => {
-      const dateTimeA = new Date(`${a.date}T${a.time}`).getTime();
-      const dateTimeB = new Date(`${b.date}T${b.time}`).getTime();
-      return dateTimeA - dateTimeB;
-    });
-
-    // Find current and next match
-    for (let i = 0; i < chronologicalMatchups.length; i++) {
-      const matchup = chronologicalMatchups[i];
-      const matchupDateTime = new Date(`${matchup.date}T${matchup.time}`);
-
-      if (matchupDateTime <= now) {
-        currentMatch = matchup;
-        nextMatch = chronologicalMatchups[i + 1] || null;
-        break;
-      } else if (matchupDateTime > now) {
-        nextMatch = matchup;
-        break;
-      }
-    }
-
-    return { currentMatch, nextMatch };
-  };
-
-  const { currentMatch, nextMatch } = getCurrentAndNextMatch();
+  // Get current and next matches using utility function
+  const { currentMatch, nextMatch } = useMemo(
+    () => getCurrentAndNextMatch(matchups),
+    [matchups]
+  );
 
   return (
     <div className="space-y-8">

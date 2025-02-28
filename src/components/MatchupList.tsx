@@ -3,6 +3,7 @@ import { MatchupCard } from "./MatchupCard";
 import { TimelineView } from "./TimelineView";
 import { matchups as allMatchups } from "../data/matchups";
 import { formatShortDate, formatShortWeekday } from "../utils/formatters";
+import { sortMatchups } from "../utils/matchupUtils";
 
 type FilterType = "all" | "upcoming" | "completed";
 type DayFilterType = "all" | "day1" | "day2";
@@ -39,21 +40,8 @@ export function MatchupList() {
     return statusFilter && dayFilterResult;
   });
 
-  // Sort matchups by date and time
-  const sortedMatchups = [...filteredMatchups].sort((a, b) => {
-    if (filter === "completed") {
-      // Most recent completed matches first
-      return (
-        new Date(`${b.date}T${b.time}`).getTime() -
-        new Date(`${a.date}T${a.time}`).getTime()
-      );
-    }
-    // Upcoming matches by date and time
-    return (
-      new Date(`${a.date}T${a.time}`).getTime() -
-      new Date(`${b.date}T${b.time}`).getTime()
-    );
-  });
+  // Use centralized sorting utility
+  const sortedMatchups = sortMatchups(filteredMatchups, filter === "completed");
 
   return (
     <div className="space-y-10">
