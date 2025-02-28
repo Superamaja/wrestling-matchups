@@ -1,50 +1,93 @@
-# React + TypeScript + Vite
+# Wrestling Matchups
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React web application for tracking wrestling events among friends with interactive UI and real-time match tracking.
 
-Currently, two official plugins are available:
+<!-- ![Wrestling Matchups Screenshot](public/screenshot.mp4 "Wrestling Matchups App") -->
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## Expanding the ESLint configuration
+Wrestling Matchups is an interactive web application built with React and TypeScript that allows you to track and showcase wrestling matchups between friends. The app features a sleek, modern interface with animations, and provides multiple view modes to display matches in an engaging way.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- **Real-time Match Tracking**: See which matches are currently live and what's coming up next
+- **Multiple View Modes**:
+  - Cards View: Displays matches in a grid of cards with detailed information
+  - Timeline View: Shows matches in a chronological timeline format
+- **Filtering Options**:
+  - Filter by status (all, upcoming, completed)
+  - Filter by day to focus on specific event dates
+- **Wrestler Stats**: View win/loss records for each wrestler
+- **Responsive Design**: Works on desktop and mobile devices
+- **Modern UI**: Glass morphism effects, animations, and interactive elements
+- **Dark Mode Support**: Automatically adapts to system preferences
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Tech Stack
+
+- [React 19](https://react.dev/) - Latest version of React
+- [TypeScript](https://www.typescriptlang.org/) - Type safety and better developer experience
+- [Vite](https://vitejs.dev/) - Next generation frontend tooling
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Framer Motion](https://www.framer.com/motion/) - Animation library
+- [clsx](https://github.com/lukeed/clsx) and [tailwind-merge](https://github.com/dcastil/tailwind-merge) - For conditional class composition
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or newer)
+- pnpm (recommended) or npm
+
+### Installation
+
+1. Clone the repository
+
+   ```bash
+   git clone https://github.com/Superamaja/wrestling-matchups.git
+   cd wrestling-matchups
+   ```
+
+2. Install dependencies
+
+   ```bash
+   pnpm install
+   # or
+   npm install
+   ```
+
+3. Start the development server
+
+   ```bash
+   pnpm dev
+   # or
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## Customization
+
+### Adding New Wrestlers
+
+To add new wrestlers, edit the `src/data/matchups.ts` file and add new entries to the matchups array with their details.
+
+## Deployment
+
+To build the application for production:
+
+```bash
+pnpm build
+# or
+npm run build
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+This will generate a `dist` directory with optimized static files that can be deployed to any static hosting provider like Netlify, Vercel, GitHub Pages, etc.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Credits
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Project created by Connor Lin
+- Wolf logo from Microsoft 3D Fluent emojis
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
