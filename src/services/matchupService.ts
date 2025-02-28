@@ -73,25 +73,45 @@ export function getCurrentAndNextMatch(matchups: Matchup[], now = new Date()) {
       ? upcomingMatches[0]
       : undefined;
 
-  // Calculate time until next match (simplified)
+  // Calculate time until next match
   let timeUntilNext = "";
   if (nextMatch) {
-    // ! When we convert to firebase, this would be calculated from actual datetime objects
-    const [hours, minutes] = nextMatch.time.split(":").map(Number);
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
+    const matchDate = new Date(`${nextMatch.date}T${nextMatch.time}:00`);
+    const todayDate = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate()
+    );
+    const matchDayDate = new Date(
+      matchDate.getFullYear(),
+      matchDate.getMonth(),
+      matchDate.getDate()
+    );
 
-    // Simplified time difference calculation
-    if (nextMatch.date === now.toISOString().split("T")[0]) {
+    // Calculate days difference
+    const daysDiff = Math.floor(
+      (matchDayDate.getTime() - todayDate.getTime()) / (1000 * 60 * 60 * 24)
+    );
+
+    if (daysDiff === 0) {
+      // Same day calculation
+      const [hours, minutes] = nextMatch.time.split(":").map(Number);
+      const currentHour = now.getHours();
+      const currentMinute = now.getMinutes();
+
       const minutesDiff =
         hours * 60 + minutes - (currentHour * 60 + currentMinute);
+
       if (minutesDiff <= 60) {
-        timeUntilNext = `${minutesDiff} minutes`;
+        timeUntilNext =
+          `${minutesDiff} minute` + (minutesDiff !== 1 ? "s" : "");
       } else {
         timeUntilNext = `${Math.floor(minutesDiff / 60)} hours`;
       }
+    } else if (daysDiff === 1) {
+      timeUntilNext = "tomorrow";
     } else {
-      timeUntilNext = "soon";
+      timeUntilNext = `${daysDiff} days`;
     }
   }
 
