@@ -38,10 +38,7 @@ export function NowPlayingWidget({ matchups }: NowPlayingWidgetProps) {
       const matchup = upcomingMatchups[i];
       const matchupDateTime = new Date(`${matchup.date}T${matchup.time}`);
 
-      // Approximate match duration as 15 minutes
-      const matchEndTime = new Date(matchupDateTime.getTime() + 15 * 60 * 1000);
-
-      if (matchupDateTime <= now && now <= matchEndTime) {
+      if (matchupDateTime <= now) {
         currentMatch = matchup;
         nextMatch = upcomingMatchups[i + 1] || null;
 
