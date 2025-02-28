@@ -3,7 +3,7 @@ import { MatchupCard } from "./MatchupCard";
 import { TimelineView } from "./TimelineView";
 import { matchups as allMatchups } from "../data/matchups";
 import { formatShortDate, formatShortWeekday } from "../utils/formatters";
-import { sortMatchups } from "../utils/matchupUtils";
+import { filterMatchups, sortMatchups } from "../services/matchupService";
 
 type FilterType = "all" | "upcoming" | "completed";
 type DayFilterType = "all" | "day1" | "day2";
@@ -19,26 +19,12 @@ export function MatchupList() {
   const day1 = eventDates[0] || "";
   const day2 = eventDates[1] || "";
 
-  // Filter by status and day
-  const filteredMatchups = allMatchups.filter((matchup) => {
-    // First filter by completion status
-    const statusFilter =
-      filter === "all"
-        ? true
-        : filter === "upcoming"
-        ? !matchup.isCompleted
-        : matchup.isCompleted;
-
-    // Then filter by day
-    const dayFilterResult =
-      dayFilter === "all"
-        ? true
-        : dayFilter === "day1"
-        ? matchup.date === day1
-        : matchup.date === day2;
-
-    return statusFilter && dayFilterResult;
-  });
+  // Use matchup service to filter matchups
+  const filteredMatchups = filterMatchups(
+    allMatchups,
+    filter,
+    dayFilter === "all" ? undefined : dayFilter === "day1" ? day1 : day2
+  );
 
   // Use centralized sorting utility
   const sortedMatchups = sortMatchups(filteredMatchups, filter === "completed");

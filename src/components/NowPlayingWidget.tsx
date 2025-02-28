@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Matchup } from "../types/Matchup";
 import { cn } from "../lib/utils";
 import { formatShortDate } from "../utils/formatters";
-import { getCurrentAndNextMatch } from "../utils/matchupUtils";
+import { getCurrentAndNextMatch } from "../services/matchupService";
 import { WrestlerAvatar } from "./WrestlerAvatar";
 import { MatchStatus } from "./MatchStatus";
 

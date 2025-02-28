@@ -5,7 +5,7 @@ import { formatMediumDate } from "../utils/formatters";
 import {
   getCurrentAndNextMatch,
   groupMatchupsByDate,
-} from "../utils/matchupUtils";
+} from "../services/matchupService";
 import { WrestlerAvatar } from "./WrestlerAvatar";
 import { MatchStatus, MatchStatusType } from "./MatchStatus";
 
